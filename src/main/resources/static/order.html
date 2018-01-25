@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+/* Full-width input fields */
+body{
+	padding: 0;
+	margin: 0;
+	 background-image: url("bcg.png");
+	 background-repeat: no-repeat;
+	 background-attachment: fixed;
+	
+}
+
+
+div.container2 {
+    width: 100%;
+	
+    
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: #f6f6ee;
+    clear: left;
+    text-align: center;
+}
+
+.baner{
+	width:50%;
+}
+.wrapper {
+	margin-left:15%;
+	width:60%;
+  display: grid;
+  grid-template-columns: 100%;
+	
+  color: #444;
+  
+}
+.pizzaimg{
+	float:left;
+	width:20%;
+	border-radius: 50%;
+}
+.boxbox{
+	margin-left:1%;
+	float: left;
+	width:50%;
+
+}
+.box {
+	
+	margin:10px;
+	background-color: rgba(0,0,0,0.5);
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 120%;
+}
+.add{
+	margin-left:1%;
+	float: left;
+	width:15%;
+	
+	text-align:center;
+}
+h2{
+	 text-align: center;
+	 color: #c13434;
+	 font-weight: bold;
+	 
+}
+
+.cart{
+	position: fixed;
+		right: 0px;
+		margin-top:0;
+		z-index:2;
+		background-color:rgba(0, 0, 0, 0.5);
+		width: 20%;
+		min-height:150px;
+		border-radius:50px;
+		padding-left:10px;
+		padding-bottom:10px;
+		padding-right:3%;
+		color:white;
+		background-opacity:0.8;
+}
+
+.add input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+ 
+
+
+
+input:focus {
+  outline:0;
+}
+
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #c13434;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+#price{
+	color: #c13434;
+	font-size: 150%;
+	 font-weight: bold;
+	 right: 0px;
+	 text-align:right;
+}
+#cart{
+
+	font-size: 110%;
+	 font-weight: bold;
+
+}
+</style>
+<body>
+
+<div class="container2">
+
+<header>
+   <img src="baner.png" alt="baner" class="baner">
+</header>
+<div class="cart">
+	<h1 style="font-weight: bold;">Cart:</h1>
+	
+	<p id="cart"></p> 
+	<p id="price">Price: 0$</p> 
+</div>
+  <div class="wrapper">
+  <div class="box a">
+	<h2 id="pizza11">
+		Margerita
+	</h2>
+	
+	
+	<img src="p1.png" alt="pizzaimg" class="pizzaimg">
+	<div class="boxbox">
+		TOMATO SAUCE<br>
+		CHEESE<br>
+		OREGANO<br>
+	</div>
+	
+
+	<div class="add">
+		<form action="#n" name="theForm">
+
+			<label class="container">Smal - 16$
+			  <input id="pizza12" type="radio" checked="checked" name="Margerita" value="small">
+			  <span class="checkmark"></span>
+			</label>
+			<label class="container">Mid - 20$
+			  <input id="pizza13" type="radio" name="Margerita" value="mid">
+			  <span class="checkmark"></span>
+			</label>
+			<label class="container">Large - 25$
+			  <input id="pizza14" type="radio" name="Margerita" value="large">
+			  <span class="checkmark"></span>
+			</label>
+		</form>
+
+	  <button class="w3-button w3-circle w3-teal" onclick="myFunction('Szynkowa')">Add</button>
+	</div>
+  </div>
+  <div class="box b">
+  <h2 id="pizza21">
+		Capriciosa
+	</h2>
+  <img src="p2.png" alt="pizzaimg" class="pizzaimg">
+  	<div class="boxbox">
+		TOMATO SAUCE<br>
+		CHEESE<br>
+		HAM<br>
+		MUSHROMS<br>
+	</div>
+		<div class="add">
+			<form action="#n" name="theForm">
+
+				<label class="container">Smal - 16$
+				  <input id="pizza22" type="radio" checked="checked" name="Caprisiosa" value="small">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Mid - 20$
+				  <input id="pizza23" type="radio" name="Caprisiosa" value="mid">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Large - 25$
+				  <input id="pizza24" type="radio" name="Caprisiosa" value="large">
+				  <span class="checkmark"></span>
+				</label>
+			</form>
+		  <button class="w3-button w3-circle w3-teal" onclick="myFunction('Bekonowa')">Add</button>
+		</div>
+	</div>
+  <div class="box c">
+  <h2 id="pizza31">
+		Havana
+	</h2>
+  <img src="p3.png" alt="pizzaimg" class="pizzaimg">
+  	<div class="boxbox">
+		TOMATO<br>
+		CHEESE<br>
+		SALAMI<br>
+		ONION<br>
+	</div>
+		<div class="add">
+			<form action="#n" name="theForm">
+
+				<label class="container">Smal - 16$
+				  <input id="pizza32" type="radio" checked="checked" name="Havana" value="small">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Mid - 20$
+				  <input id="pizza33" type="radio" name="Havana" value="mid">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Large - 25$
+				  <input id="pizza34" type="radio" name="Havana" value="large">
+				  <span class="checkmark"></span>
+				</label>
+			</form>
+		  <button class="w3-button w3-circle w3-teal" onclick="myFunction('mozzarella')">Add</button>
+		</div>
+	</div>
+
+
+</div>
+
+</div>
+ <script type="text/javascript">
+ var pizza = [];
+document.getElementById("cart").innerHTML = pizza;
+var price = 0;
+
+function myFunction(name) {
+
+var radios = document.getElementsByName(name);
+for (var i = 0, length = radios.length; i < length; i++)
+{
+ if (radios[i].checked)
+ {
+	 if(radios[i].value == "small"){
+	   pizza.push("<br>"+name+" "+radios[i].value+"");
+		document.getElementById("cart").innerHTML = pizza;
+		price = price + 16;
+		document.getElementById("price").innerHTML ="Price: "+ price +"$";
+	}else if(radios[i].value == "mid"){
+		pizza.push("<br>"+name+" "+radios[i].value+"");
+		document.getElementById("cart").innerHTML = pizza;
+		price = price + 20;
+		document.getElementById("price").innerHTML ="Price: "+ price +"$";
+	}else if(radios[i].value == "large"){
+		pizza.push("<br>"+name+" "+radios[i].value+"");
+		document.getElementById("cart").innerHTML = pizza;
+		price = price + 25;
+		document.getElementById("price").innerHTML ="Price: "+ price +"$";
+	}
+  break;
+ }
+}
+   
+
+};
+
+ $(document).ready(function() {
+
+
+     $.ajax({
+         url: "http://localhost:8080/pizza/all"
+     }).then(function(data) {
+         document.getElementById("pizza11").innerHTML = data[0].name;
+         document.getElementById("pizza12").name = data[0].name;
+         document.getElementById("pizza13").name = data[0].name;
+         document.getElementById("pizza14").name = data[0].name;
+
+         document.getElementById("pizza21").innerHTML = data[1].name;
+         document.getElementById("pizza22").name = data[1].name;
+         document.getElementById("pizza23").name = data[1].name;
+         document.getElementById("pizza24").name = data[1].name;
+
+         document.getElementById("pizza31").innerHTML = data[2].name;
+         document.getElementById("pizza32").name = data[2].name;
+         document.getElementById("pizza33").name = data[2].name;
+         document.getElementById("pizza34").name = data[2].name;
+         console.log(data[0]);
+
+     });
+ });
+
+   
+    </script>
+
+
+</body>
+</html>
