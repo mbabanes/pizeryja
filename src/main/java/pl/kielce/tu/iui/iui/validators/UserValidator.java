@@ -29,6 +29,7 @@ public class UserValidator
     public void validate() throws IllegalArgumentException
     {
         checkEmailAddress();
+        checkPassword();
         checkFirstNameAndLastName();
         checkPhoneNumber();
         checkEmailIsUsed();
@@ -50,6 +51,20 @@ public class UserValidator
         }
     }
 
+    private void checkPassword() throws IllegalArgumentException
+    {
+        if (this.user.getPassword() == null && this.user.getConfirmPassword() == null)
+        {
+            errors.add(new Error("user.password", null, ErrorType.EMPTY_FIELD));
+            errors.add(new Error("user.confirmPassword", null, ErrorType.EMPTY_FIELD));
+            throw new IllegalArgumentException("Nie podano haseł");
+        }
+        if(!this.user.getPassword().equals(user.getConfirmPassword()))
+        {
+            errors.add(new Error("user.confirmPassword", null, ErrorType.NOT_EQUALS));
+            throw new IllegalArgumentException("Hasła się nie zgadzają");
+        }
+    }
 
     private void checkFirstNameAndLastName() throws IllegalArgumentException
     {
