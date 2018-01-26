@@ -19,4 +19,16 @@ $(document).ready(function() {
 
 function myFunction() {
     alert(" :"+id+con);
-}
+};
+function loginFunction() {
+
+
+        if(document.getElementById("loginEmail").value == "robcio@buziaczek.pl"){
+            if(document.getElementById("loginPsw").value == "robcio"){
+                alert("login as: "+document.getElementById("loginEmail").value);
+                location.href = "http://localhost:8080/order.html";
+            };
+        };
+
+
+};
