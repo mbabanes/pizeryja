@@ -5,6 +5,7 @@ package pl.kielce.tu.iui.iui.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pl.kielce.tu.iui.iui.controller.json.UserJSON;
 import pl.kielce.tu.iui.iui.controller.json.utill.UserConverter;
@@ -41,5 +42,12 @@ public class UserController
             sqlE.printStackTrace();
             return ResponseEntity.badRequest().body("Bład bazy danych");
         }
+    }
+
+    @CrossOrigin
+    @GetMapping("current")
+    public String getCurrentUser()
+    {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
