@@ -14,5 +14,7 @@ public interface PizzaRepository extends JpaRepository<Pizza, Long>
     @Query("SELECT DISTINCT p FROM Pizza p JOIN p.components pc WHERE pc.name IN (:components)")
     List<Pizza> findByComponentsName(@Param("components") List<String> components);
 
-    Optional<Pizza> findById(Long id);
+
+    @Query("SELECT p.price FROM Pizza p WHERE p.id = :id")
+    double getPriceById(@Param("id") Long id);
 }

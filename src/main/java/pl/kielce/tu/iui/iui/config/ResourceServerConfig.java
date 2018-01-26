@@ -15,7 +15,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
         http.authorizeRequests()
                 .antMatchers("/", "/home", "/component/**").permitAll()
                 .antMatchers("/private/**").authenticated()
-                .antMatchers("/order/**").authenticated()
+                .antMatchers("/order/**").permitAll()
                 .antMatchers("/component/add", "/pizza/create").hasAuthority("ROLE_ADMIN")
                         .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/swagger**").permitAll()

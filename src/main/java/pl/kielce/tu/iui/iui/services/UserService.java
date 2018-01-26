@@ -20,4 +20,9 @@ public class UserService
     {
         return userRepository.findByEmail(email);
     }
+
+    public long getIdByEmail(String email)
+    {
+        return userRepository.getIdByEmail(email);
+    }
 }
