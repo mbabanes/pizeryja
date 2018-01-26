@@ -15,7 +15,7 @@ public class PizzaService
     private PizzaRepository pizzaRepository;
 
 
-    public double getPriceById(long id)
+    public double getPriceById(Long id)
     {
         return pizzaRepository.getPriceById(id);
     }

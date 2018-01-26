@@ -25,7 +25,7 @@ public class Order implements Serializable
     private double price;
 
     @ManyToMany
-    @JoinTable(name = "order_pizza",
+    @JoinTable(name = "orders_pizza",
             joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
     private List<Pizza> pizzas;
@@ -35,6 +35,9 @@ public class Order implements Serializable
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    private boolean done;
+    private boolean canceled;
 
 
     public int getId()
@@ -102,5 +105,25 @@ public class Order implements Serializable
     public void setAddress(Address address)
     {
         this.address = address;
+    }
+
+    public boolean isDone()
+    {
+        return done;
+    }
+
+    public void setDone(boolean done)
+    {
+        this.done = done;
+    }
+
+    public boolean isCanceled()
+    {
+        return canceled;
+    }
+
+    public void setCanceled(boolean canceled)
+    {
+        this.canceled = canceled;
     }
 }

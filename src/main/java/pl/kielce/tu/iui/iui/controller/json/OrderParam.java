@@ -6,9 +6,7 @@ public class OrderParam
 {
     private List<Long> pizzaIds;
 
-    private String city;
-    private String street;
-    private String houseNumber;
+  private AddressParamJSON addressParamJSON;
 
 
     public List<Long> getPizzaIds()
@@ -21,33 +19,13 @@ public class OrderParam
         this.pizzaIds = pizzaIds;
     }
 
-    public String getCity()
+    public AddressParamJSON getAddressParamJSON()
     {
-        return city;
+        return addressParamJSON;
     }
 
-    public void setCity(String city)
+    public void setAddressParamJSON(AddressParamJSON addressParamJSON)
     {
-        this.city = city;
-    }
-
-    public String getStreet()
-    {
-        return street;
-    }
-
-    public void setStreet(String street)
-    {
-        this.street = street;
-    }
-
-    public String getHouseNumber()
-    {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber)
-    {
-        this.houseNumber = houseNumber;
+        this.addressParamJSON = addressParamJSON;
     }
 }

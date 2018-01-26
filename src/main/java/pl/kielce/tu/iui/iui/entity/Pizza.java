@@ -22,7 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-
 public class Pizza implements Serializable {
 
 	private static final long serialVersionUID = 7694599471257093934L;
