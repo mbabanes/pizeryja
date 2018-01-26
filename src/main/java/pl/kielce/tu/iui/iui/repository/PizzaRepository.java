@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface PizzaRepository extends JpaRepository<Pizza, Long>
 {
     @Query("SELECT DISTINCT p FROM Pizza p JOIN p.components pc WHERE pc.name IN (:components)")
-    List<Pizza> dupa(@Param("components") List<String> components);
+    List<Pizza> findByComponentsName(@Param("components") List<String> components);
 
     Optional<Pizza> findById(Long id);
 }
