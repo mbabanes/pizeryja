@@ -4,16 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import pl.kielce.tu.iui.iui.controller.json.AddressJSON;
 import pl.kielce.tu.iui.iui.controller.json.OrderParam;
+import pl.kielce.tu.iui.iui.controller.json.OrderResponse;
+import pl.kielce.tu.iui.iui.controller.json.UserResponse;
 import pl.kielce.tu.iui.iui.controller.json.utill.AddressConverter;
+import pl.kielce.tu.iui.iui.controller.json.utill.OrderResponseCreator;
+import pl.kielce.tu.iui.iui.controller.json.utill.PizzaResponseCreator;
+import pl.kielce.tu.iui.iui.controller.json.utill.UserConverter;
 import pl.kielce.tu.iui.iui.entity.Address;
 import pl.kielce.tu.iui.iui.entity.Order;
 import pl.kielce.tu.iui.iui.model.OrderDetails;
 import pl.kielce.tu.iui.iui.model.OrderModel;
-import pl.kielce.tu.iui.iui.repository.PizzaRepository;
 import pl.kielce.tu.iui.iui.services.AddressService;
 import pl.kielce.tu.iui.iui.services.OrderService;
-import pl.kielce.tu.iui.iui.services.PizzaService;
 
 @RestController
 @RequestMapping("order")
@@ -35,7 +39,7 @@ public class OrderController
     {
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Address address = AddressConverter.convertToAddress(orderParam.getAddressParamJSON());
+        Address address = AddressConverter.convertToAddress(orderParam.getAddressJSON());
         addressService.insert(address);
 
         OrderDetails orderDetails = new OrderDetails(orderParam.getPizzaIds(), address, currentUserEmail);
@@ -46,5 +50,17 @@ public class OrderController
 //        double price = pizzaRepository.getPriceById(1L);
 
         return ResponseEntity.ok(order.getId());
+    }
+
+    @CrossOrigin
+    @GetMapping("{id}")
+    public ResponseEntity<?> getOrderByOd(@RequestParam("id") int id)
+    {
+        Order order = orderService.getOrderById(id);
+
+        OrderResponse orderResponse = OrderResponseCreator.createResponseOf(order);
+
+
+        return ResponseEntity.ok(orderResponse);
     }
 }

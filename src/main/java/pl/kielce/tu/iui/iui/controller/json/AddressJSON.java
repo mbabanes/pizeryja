@@ -1,6 +1,6 @@
 package pl.kielce.tu.iui.iui.controller.json;
 
-public class AddressParamJSON
+public class AddressJSON
 {
     private String city;
     private String street;

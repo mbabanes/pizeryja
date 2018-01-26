@@ -6,7 +6,7 @@ public class OrderParam
 {
     private List<Long> pizzaIds;
 
-  private AddressParamJSON addressParamJSON;
+  private AddressJSON addressJSON;
 
 
     public List<Long> getPizzaIds()
@@ -19,13 +19,13 @@ public class OrderParam
         this.pizzaIds = pizzaIds;
     }
 
-    public AddressParamJSON getAddressParamJSON()
+    public AddressJSON getAddressJSON()
     {
-        return addressParamJSON;
+        return addressJSON;
     }
 
-    public void setAddressParamJSON(AddressParamJSON addressParamJSON)
+    public void setAddressJSON(AddressJSON addressJSON)
     {
-        this.addressParamJSON = addressParamJSON;
+        this.addressJSON = addressJSON;
     }
 }
