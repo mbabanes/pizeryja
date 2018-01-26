@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.kielce.tu.iui.iui.controller.json.ComponentResponseJSON;
 import pl.kielce.tu.iui.iui.controller.json.PizzaJSON;
 import pl.kielce.tu.iui.iui.controller.json.PizzaResponseJSON;
+import pl.kielce.tu.iui.iui.controller.json.utill.PizzaResponseCreator;
 import pl.kielce.tu.iui.iui.entity.Pizza;
 import pl.kielce.tu.iui.iui.model.PizzaModel;
 import pl.kielce.tu.iui.iui.repository.ComponentRepository;
@@ -57,7 +58,7 @@ public class PizzaController
     public ResponseEntity<?> getAllPizzas()
     {
         List<Pizza> pizzas = pizzaRepository.findAll();
-        List<PizzaResponseJSON> pizzaResponseJSONList = preparaResponse(pizzas);
+        List<PizzaResponseJSON> pizzaResponseJSONList = PizzaResponseCreator.createResponseOf(pizzas);
         return ResponseEntity.ok(pizzaResponseJSONList);
     }
 
@@ -69,7 +70,7 @@ public class PizzaController
 
         if (pizza != null)
         {
-            PizzaResponseJSON pizzaResponseJSON = preparePizzaResponse(pizza);
+            PizzaResponseJSON pizzaResponseJSON = PizzaResponseCreator.createPizzaResponseOf(pizza);
 //        List<ComponentResponseJSON> componentResponseJSONList = prepareComponentsResponse(pizza);
 //        pizzaResponseJSON.setComponents(componentResponseJSONList);
 
@@ -82,51 +83,14 @@ public class PizzaController
     @PostMapping("byComponents")
     public ResponseEntity<?> getPizzaByComponents(@RequestBody List<String> components)
     {
-        List<Pizza> pizzas = pizzaRepository.dupa(components);
-        List<PizzaResponseJSON> pizzaResponseJSONList = preparaResponse(pizzas);
+        List<Pizza> pizzas = pizzaRepository.findByComponentsName(components);
+        List<PizzaResponseJSON> pizzaResponseJSONList = PizzaResponseCreator.createResponseOf(pizzas);
 
 
         return ResponseEntity.ok(pizzaResponseJSONList);
     }
 
 
-    private List<PizzaResponseJSON> preparaResponse(List<Pizza> pizzas)
-    {
-        List<PizzaResponseJSON> pizzaResponseJSONList = new ArrayList<>();
 
-        pizzas.forEach(pizza ->
-        {
-            PizzaResponseJSON pizzaResponseJSON = preparePizzaResponse(pizza);
-            pizzaResponseJSONList.add(pizzaResponseJSON);
-        });
-
-        return pizzaResponseJSONList;
-    }
-
-    private PizzaResponseJSON preparePizzaResponse(Pizza pizza)
-    {
-        PizzaResponseJSON pizzaResponseJSON = new PizzaResponseJSON();
-        pizzaResponseJSON.setId(pizza.getId());
-        pizzaResponseJSON.setName(pizza.getName());
-        pizzaResponseJSON.setPrice(pizza.getPrice());
-        List<ComponentResponseJSON> componentResponseJSONList = prepareComponentsResponse(pizza);
-
-        pizzaResponseJSON.setComponents(componentResponseJSONList);
-        return pizzaResponseJSON;
-    }
-
-    private List<ComponentResponseJSON> prepareComponentsResponse(Pizza pizza)
-    {
-        List<ComponentResponseJSON> componentResponseJSONList = new ArrayList<>();
-        pizza.getComponents().forEach(component ->
-        {
-            ComponentResponseJSON componentResponseJSON = new ComponentResponseJSON();
-            componentResponseJSON.setId(component.getId());
-            componentResponseJSON.setName(component.getName());
-            componentResponseJSONList.add(componentResponseJSON);
-        });
-
-        return componentResponseJSONList;
-    }
 
 }
