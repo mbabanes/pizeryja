@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     });
 });
-var markers=[{
+var abc=[{
     "confirmPassword": "123",
     "email": "test@test.te",
     "firstName": "test",
@@ -24,47 +24,37 @@ var markers=[{
     "password": "123",
     "phoneNumber": "123123123"
 }];
-function myFunction() {
+function myFunction2() {
+
     $.ajax({
         type: "POST",
-        url: "localhost:8080/user/register",
-
-        data: {
-
-            "confirmPassword": "abc",
-            "email": "abc@ac.abc",
-            "firstName": "abc",
-            "lastName": "abc",
-            "password": "abc",
-            "phoneNumber": "123333123"
-
-        },
-        contentType: "application/json"
-    });
-
-};
-function myFunction2() {
-    $.ajax
-    ({
-        type: "POST",
-        url: 'localhost:8080/user/register',
+        url: '/user/register',
         dataType: 'json',
         data: JSON.stringify({
+            "confirmPassword": document.getElementById("regCPsw").value,
+            "email": document.getElementById("regMail").value,
+            "firstName": document.getElementById("regName").value,
+            "lastName": document.getElementById("regSurname").value,
+            "password": document.getElementById("regPsw").value,
+            "phoneNumber": document.getElementById("regAddress").value
 
-                "confirmPassword": "abc",
-                "email": "abc@ac.abc",
-                "firstName": "abc",
-                "lastName": "abc",
-                "password": "abc",
-                "phoneNumber": "123333123"
+        }),
+        contentType: 'application/json'
 
-            }),
-        contentType: 'application/json',
-        success: function () {
-
-            alert("Thanks!");
-        }
     })
+    alert("Rejestracja poprawna!");
+    document.getElementById("id02").style.display="none";
+};
+function myFunction() {
+    var url = "/user/register";
+    var params = "confirmPassword=123&email=test@test.te&firstName=test&lastName=test&password=123&phoneNumber=123123123";
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+//Send the proper header information along with the request
+    xhr.setRequestHeader("Content-type", "application/json");
+
+    xhr.send(params);
 };
 function loginFunction() {
 
