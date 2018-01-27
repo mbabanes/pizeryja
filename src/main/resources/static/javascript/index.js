@@ -18,7 +18,23 @@ $(document).ready(function() {
 });
 
 function myFunction() {
-    alert(" :"+id+con);
+
+    $.ajax({
+        type: "POST",
+        url: 'localhost:8080/user/register',
+        data: {
+
+            "email": "test@test.test",
+            "firstName": "Test",
+            "lastName": "Test",
+            "password": "123",
+            "phoneNumber": "123123123"
+        }
+    }).then(function() {
+        alert(" :"+id+con);
+
+    });
+
 };
 function loginFunction() {
 
