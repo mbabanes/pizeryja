@@ -16,25 +16,55 @@ $(document).ready(function() {
 
     });
 });
-
+var markers=[{
+    "confirmPassword": "123",
+    "email": "test@test.te",
+    "firstName": "test",
+    "lastName": "test",
+    "password": "123",
+    "phoneNumber": "123123123"
+}];
 function myFunction() {
-
     $.ajax({
         type: "POST",
-        url: 'localhost:8080/user/register',
+        url: "localhost:8080/user/register",
+
         data: {
 
-            "email": "test@test.test",
-            "firstName": "Test",
-            "lastName": "Test",
-            "password": "123",
-            "phoneNumber": "123123123"
-        }
-    }).then(function() {
-        alert(" :"+id+con);
+            "confirmPassword": "abc",
+            "email": "abc@ac.abc",
+            "firstName": "abc",
+            "lastName": "abc",
+            "password": "abc",
+            "phoneNumber": "123333123"
 
+        },
+        contentType: "application/json"
     });
 
+};
+function myFunction2() {
+    $.ajax
+    ({
+        type: "POST",
+        url: 'localhost:8080/user/register',
+        dataType: 'json',
+        data: JSON.stringify({
+
+                "confirmPassword": "abc",
+                "email": "abc@ac.abc",
+                "firstName": "abc",
+                "lastName": "abc",
+                "password": "abc",
+                "phoneNumber": "123333123"
+
+            }),
+        contentType: 'application/json',
+        success: function () {
+
+            alert("Thanks!");
+        }
+    })
 };
 function loginFunction() {
 
