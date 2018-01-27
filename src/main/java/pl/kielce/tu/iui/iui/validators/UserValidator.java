@@ -1,6 +1,7 @@
 package pl.kielce.tu.iui.iui.validators;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.kielce.tu.iui.iui.controller.json.UserJSON;
 import pl.kielce.tu.iui.iui.entity.User;
 import pl.kielce.tu.iui.iui.repository.UserRepository;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
+@Service
 public class UserValidator
 {
     private List<Error> errors;
@@ -20,14 +21,14 @@ public class UserValidator
     @Autowired
     private UserService userService;
 
-    public UserValidator(UserJSON user)
+    public UserValidator()
     {
-        this.user = user;
         errors = new ArrayList<>();
     }
 
-    public void validate() throws IllegalArgumentException
+    public void validate(UserJSON user) throws IllegalArgumentException
     {
+        this.user = user;
         checkEmailAddress();
         checkPassword();
         checkFirstNameAndLastName();

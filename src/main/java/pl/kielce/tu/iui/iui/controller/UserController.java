@@ -21,15 +21,17 @@ public class UserController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserValidator userValidator;
+
 
     @CrossOrigin
     @PostMapping("register")
     public ResponseEntity<?> createUser(@RequestBody UserJSON userJSON)
     {
-        UserValidator userValidator = new UserValidator(userJSON);
         try
         {
-            userValidator.validate();
+            userValidator.validate(userJSON);
             User user = UserConverter.convertToUser(userJSON);
             user.setPhoneNumber(user.getPhoneNumber().replaceAll("[- ]", ""));
             userService.insert(user);
