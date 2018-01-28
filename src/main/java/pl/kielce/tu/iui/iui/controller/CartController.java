@@ -3,15 +3,12 @@ package pl.kielce.tu.iui.iui.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.kielce.tu.iui.iui.model.Cart;
 import pl.kielce.tu.iui.iui.services.CartService;
 
 @RestController
 @RequestMapping("cart")
 public class CartController
 {
-    @Autowired
-    private Cart cart;
 
     @Autowired
     private CartService cartService;
@@ -20,7 +17,7 @@ public class CartController
     @PostMapping("add/{id}")
     public ResponseEntity<?> add(@RequestParam("id") Long id)
     {
-        cart.add(id);
+        cartService.addToCart(id);
         return ResponseEntity.ok(null);
     }
 
@@ -28,6 +25,6 @@ public class CartController
     @GetMapping("/")
     public ResponseEntity<?> getCart()
     {
-        return ResponseEntity.ok(cartService.createCartResponse());
+        return ResponseEntity.ok(cartService.getCart());
     }
 }

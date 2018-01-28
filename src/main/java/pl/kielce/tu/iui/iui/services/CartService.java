@@ -3,11 +3,11 @@ package pl.kielce.tu.iui.iui.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
-import pl.kielce.tu.iui.iui.controller.json.CartResponse;
-import pl.kielce.tu.iui.iui.controller.json.PizzaResponseJSON;
+import pl.kielce.tu.iui.iui.controller.json.response.CartResponse;
+import pl.kielce.tu.iui.iui.controller.json.response.PizzaResponseJSON;
 import pl.kielce.tu.iui.iui.controller.json.utill.PizzaResponseCreator;
 import pl.kielce.tu.iui.iui.entity.Pizza;
-import pl.kielce.tu.iui.iui.model.Cart;
+import pl.kielce.tu.iui.iui.component.Cart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,17 @@ public class CartService
     @Autowired
     private Cart cart;
 
-    public CartResponse createCartResponse()
+    public CartResponse getCart()
+    {
+        return createCartResponse();
+    }
+
+    public void addToCart(Long id)
+    {
+        cart.add(id);
+    }
+
+    private CartResponse createCartResponse()
     {
         CartResponse cartResponse = new CartResponse();
 

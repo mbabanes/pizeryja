@@ -1,10 +1,5 @@
-package pl.kielce.tu.iui.iui.controller.json;
+package pl.kielce.tu.iui.iui.controller.json.response;
 
-
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import pl.kielce.tu.iui.iui.model.Cart;
 
 import java.util.ArrayList;
 import java.util.List;

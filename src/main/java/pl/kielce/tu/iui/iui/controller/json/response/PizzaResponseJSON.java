@@ -1,4 +1,4 @@
-package pl.kielce.tu.iui.iui.controller.json;
+package pl.kielce.tu.iui.iui.controller.json.response;
 
 import java.util.List;
 

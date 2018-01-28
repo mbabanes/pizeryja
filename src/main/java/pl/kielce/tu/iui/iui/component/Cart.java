@@ -1,4 +1,4 @@
-package pl.kielce.tu.iui.iui.model;
+package pl.kielce.tu.iui.iui.component;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kielce.tu.iui.iui.controller.json.PizzaJSON;
-import pl.kielce.tu.iui.iui.controller.json.PizzaResponseJSON;
+import pl.kielce.tu.iui.iui.controller.json.response.PizzaResponseJSON;
 import pl.kielce.tu.iui.iui.controller.json.utill.PizzaResponseCreator;
 import pl.kielce.tu.iui.iui.entity.Pizza;
 import pl.kielce.tu.iui.iui.model.PizzaModel;
