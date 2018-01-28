@@ -1,7 +1,7 @@
 package pl.kielce.tu.iui.iui.controller.json.utill;
 
 import pl.kielce.tu.iui.iui.controller.json.UserJSON;
-import pl.kielce.tu.iui.iui.controller.json.UserResponse;
+import pl.kielce.tu.iui.iui.controller.json.response.UserResponse;
 import pl.kielce.tu.iui.iui.entity.User;
 
 public class UserConverter

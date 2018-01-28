@@ -1,8 +1,8 @@
 package pl.kielce.tu.iui.iui.controller.json.utill;
 
 import pl.kielce.tu.iui.iui.controller.json.AddressJSON;
-import pl.kielce.tu.iui.iui.controller.json.OrderResponse;
-import pl.kielce.tu.iui.iui.controller.json.UserResponse;
+import pl.kielce.tu.iui.iui.controller.json.response.OrderResponse;
+import pl.kielce.tu.iui.iui.controller.json.response.UserResponse;
 import pl.kielce.tu.iui.iui.entity.Order;
 
 import java.time.format.DateTimeFormatter;
