@@ -50,7 +50,7 @@ public class OrderController
 
     @CrossOrigin
     @GetMapping("{id}")
-    public ResponseEntity<?> getOrderByOd(@RequestParam("id") int id)
+    public ResponseEntity<?> getOrderById(@RequestParam("id") int id)
     {
         Order order = orderService.getOrderById(id);
 
