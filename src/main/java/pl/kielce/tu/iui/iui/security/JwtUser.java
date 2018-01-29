@@ -1,4 +1,4 @@
-package com.clinic.clinic_be.security;
+package pl.kielce.tu.iui.iui.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

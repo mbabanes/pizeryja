@@ -1,6 +1,5 @@
-package com.clinic.clinic_be.security;
+package pl.kielce.tu.iui.iui.security;
 
-import com.clinic.clinic_be.security.auth.TokenHandler;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import pl.kielce.tu.iui.iui.security.auth.TokenHandler;
 
 import java.io.Serializable;
 import java.util.Date;

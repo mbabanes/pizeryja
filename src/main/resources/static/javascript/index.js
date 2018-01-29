@@ -3,7 +3,7 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
 var id;
 var con;
 $(document).ready(function() {
@@ -55,16 +55,33 @@ function myFunction() {
     xhr.setRequestHeader("Content-type", "application/json");
 
     xhr.send(params);
-};
+}
 function loginFunction() {
 
 
-        if(document.getElementById("loginEmail").value == "robcio@buziaczek.pl"){
-            if(document.getElementById("loginPsw").value == "robcio"){
-                alert("login as: "+document.getElementById("loginEmail").value);
-                location.href = "http://localhost:8080/order.html";
-            };
-        };
 
 
-};
+        // if(document.getElementById("loginEmail").value === "robcio@buziaczek.pl"){
+        //     if(document.getElementById("loginPsw").value === "robcio"){
+        //         alert("login as: "+document.getElementById("loginEmail").value);
+        //         location.href = "http://localhost:8080/order.html";
+        //     }
+        // }
+
+
+}
+
+$('#loginBtn').click(function () {
+
+    var dataLogin = { //wczytac dane wpisane
+      login: "",
+      password:""
+    };
+    $.ajax({
+        url: "http://localhost:8080/" + dataLogin//link do log
+    }).then(function(data) {
+        // jezeli data success to przekierowanie na post login 200 to git
+        // sprawdzic w backu czy dane sie zgadzaja
+    });
+
+});

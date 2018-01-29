@@ -1,4 +1,4 @@
-package com.clinic.clinic_be.security;
+package pl.kielce.tu.iui.iui.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

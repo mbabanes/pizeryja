@@ -1,4 +1,4 @@
-package com.clinic.clinic_be.security.enums;
+package pl.kielce.tu.iui.iui.security.enums;
 
 public enum TokenStatusEnum {
     ACTIVE,

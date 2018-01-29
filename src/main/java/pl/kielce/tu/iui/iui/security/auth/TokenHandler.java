@@ -1,10 +1,10 @@
-package com.clinic.clinic_be.security.auth;
+package pl.kielce.tu.iui.iui.security.auth;
 
-import com.clinic.clinic_be.security.enums.TokenStatusEnum;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
+import pl.kielce.tu.iui.iui.security.enums.TokenStatusEnum;
 
 @Service
 @Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)

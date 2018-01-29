@@ -1,4 +1,4 @@
-package com.clinic.clinic_be.security;
+package pl.kielce.tu.iui.iui.security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

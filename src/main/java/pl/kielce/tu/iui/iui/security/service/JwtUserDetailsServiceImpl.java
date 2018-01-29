@@ -1,13 +1,13 @@
-package com.clinic.clinic_be.security.service;
+package pl.kielce.tu.iui.iui.security.service;
 
-import com.clinic.clinic_be.persistence.entities.User;
-import com.clinic.clinic_be.persistence.repositories.UserRepository;
-import com.clinic.clinic_be.security.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.kielce.tu.iui.iui.entity.User;
+import pl.kielce.tu.iui.iui.repository.UserRepository;
+import pl.kielce.tu.iui.iui.security.JwtUserFactory;
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
@@ -17,7 +17,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userRepository.findActiveByLogin(login);
+        User user = userRepository.findByEmail(login);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with login '%s'.", login));
         } else {

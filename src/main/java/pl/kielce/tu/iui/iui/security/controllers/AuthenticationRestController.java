@@ -1,19 +1,10 @@
-package com.clinic.clinic_be.security.controllers;
+package pl.kielce.tu.iui.iui.security.controllers;
 
-import com.clinic.clinic_be.logic.user.UserBean;
-import com.clinic.clinic_be.persistence.repositories.UserRepository;
-import com.clinic.clinic_be.security.JwtAuthenticationRequest;
-import com.clinic.clinic_be.security.JwtTokenUtil;
-import com.clinic.clinic_be.security.JwtUser;
-import com.clinic.clinic_be.security.auth.TokenHandler;
-import com.clinic.clinic_be.security.exceptions.UnauthorizedException;
-import com.clinic.clinic_be.security.service.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,7 +13,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-import sun.rmi.runtime.Log;
+import pl.kielce.tu.iui.iui.repository.UserRepository;
+import pl.kielce.tu.iui.iui.security.JwtAuthenticationRequest;
+import pl.kielce.tu.iui.iui.security.JwtTokenUtil;
+import pl.kielce.tu.iui.iui.security.JwtUser;
+import pl.kielce.tu.iui.iui.security.auth.TokenHandler;
+import pl.kielce.tu.iui.iui.security.exceptions.UnauthorizedException;
+import pl.kielce.tu.iui.iui.security.service.JwtAuthenticationResponse;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,8 +40,6 @@ public class AuthenticationRestController {
     @Autowired
     private TokenHandler tokenHandler;
     @Autowired
-    private UserBean userBean;
-    @Autowired
     private LoggedUserComponent loggedUserComponent;
 
     @CrossOrigin
@@ -60,11 +55,9 @@ public class AuthenticationRestController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         tokenHandler.setToken(token);
-        userRepository.updateUserLastLoginDate(authenticationRequest.getUsername());
-        String returnPageName = userBean.getReturnPageNameByLoggedUserAppRole(userDetails.getUsername());
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         loggedUserComponent.setLoggedUser(user);
-        return new ResponseEntity(new JwtAuthenticationResponse(token, returnPageName), HttpStatus.OK);
+        return new ResponseEntity(new JwtAuthenticationResponse(token), HttpStatus.OK);
     }
 
     @CrossOrigin
