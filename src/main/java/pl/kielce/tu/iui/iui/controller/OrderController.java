@@ -62,4 +62,15 @@ public class OrderController
 
         return ResponseEntity.ok(orderResponse);
     }
+
+    @CrossOrigin
+    @PutMapping("{id}")
+    public ResponseEntity<?> makeDoneOrderById(@RequestParam("id") int id)
+    {
+        Order order = orderService.getOrderById(id);
+        order.setDone(true);
+        orderService.update(order);
+
+        return ResponseEntity.ok(null);
+    }
 }

@@ -20,4 +20,9 @@ public class OrderService
     {
         return orderRepository.findOne(id);
     }
+
+    public void update(Order order)
+    {
+        orderRepository.save(order);
+    }
 }

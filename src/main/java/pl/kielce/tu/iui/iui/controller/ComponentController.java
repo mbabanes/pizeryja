@@ -31,7 +31,7 @@ public class ComponentController
         try
         {
             List<Component> components = componentService.getAllComponent();
-            List<ComponentResponseJSON> componentResponseJSONList = createComponentResponseListOf(components);
+            List<ComponentResponseJSON> componentResponseJSONList = ComponentConverter.createComponentResponseListOf(components);
 
             return ResponseEntity.ok(componentResponseJSONList);
         } catch(Exception e)
@@ -49,7 +49,7 @@ public class ComponentController
         try
         {
             List<Component> components = componentService.getComponentPagable(page);
-            List<ComponentResponseJSON> componentResponseJSONList = createComponentResponseListOf(components);
+            List<ComponentResponseJSON> componentResponseJSONList = ComponentConverter.createComponentResponseListOf(components);
             return ResponseEntity.ok(componentResponseJSONList);
         } catch (Exception e)
         {
@@ -86,14 +86,5 @@ public class ComponentController
         Component component = componentService.getComponentById(id);
         ComponentResponseJSON componentResponseJSON = ComponentConverter.convertToComponentResponseJSON(component);
         return ResponseEntity.ok(componentResponseJSON);
-    }
-
-    private List<ComponentResponseJSON> createComponentResponseListOf(List<Component> components)
-    {
-        List<ComponentResponseJSON> componentResponseJSONList = new ArrayList<>();
-        components.forEach(component -> {
-            componentResponseJSONList.add(ComponentConverter.convertToComponentResponseJSON(component));
-        });
-        return componentResponseJSONList;
     }
 }
