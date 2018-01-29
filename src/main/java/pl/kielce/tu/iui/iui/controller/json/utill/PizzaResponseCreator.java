@@ -1,7 +1,7 @@
 package pl.kielce.tu.iui.iui.controller.json.utill;
 
-import pl.kielce.tu.iui.iui.controller.json.ComponentResponseJSON;
-import pl.kielce.tu.iui.iui.controller.json.PizzaResponseJSON;
+import pl.kielce.tu.iui.iui.controller.json.response.ComponentResponseJSON;
+import pl.kielce.tu.iui.iui.controller.json.response.PizzaResponseJSON;
 import pl.kielce.tu.iui.iui.entity.Pizza;
 
 import java.util.ArrayList;

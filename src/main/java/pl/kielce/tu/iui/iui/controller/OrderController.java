@@ -4,14 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import pl.kielce.tu.iui.iui.controller.json.AddressJSON;
 import pl.kielce.tu.iui.iui.controller.json.OrderParam;
-import pl.kielce.tu.iui.iui.controller.json.OrderResponse;
-import pl.kielce.tu.iui.iui.controller.json.UserResponse;
+import pl.kielce.tu.iui.iui.controller.json.response.OrderResponse;
 import pl.kielce.tu.iui.iui.controller.json.utill.AddressConverter;
 import pl.kielce.tu.iui.iui.controller.json.utill.OrderResponseCreator;
-import pl.kielce.tu.iui.iui.controller.json.utill.PizzaResponseCreator;
-import pl.kielce.tu.iui.iui.controller.json.utill.UserConverter;
 import pl.kielce.tu.iui.iui.entity.Address;
 import pl.kielce.tu.iui.iui.entity.Order;
 import pl.kielce.tu.iui.iui.model.OrderDetails;
@@ -54,7 +50,7 @@ public class OrderController
 
     @CrossOrigin
     @GetMapping("{id}")
-    public ResponseEntity<?> getOrderByOd(@RequestParam("id") int id)
+    public ResponseEntity<?> getOrderById(@RequestParam("id") int id)
     {
         Order order = orderService.getOrderById(id);
 
