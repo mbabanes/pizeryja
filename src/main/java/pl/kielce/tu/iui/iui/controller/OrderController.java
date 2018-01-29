@@ -30,7 +30,7 @@ public class OrderController
 
 
     @CrossOrigin
-    @PostMapping("make")
+    @PostMapping("/")
     public ResponseEntity<?> makeOrder(@RequestBody OrderParam orderParam)
     {
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -53,9 +53,12 @@ public class OrderController
     public ResponseEntity<?> getOrderById(@RequestParam("id") int id)
     {
         Order order = orderService.getOrderById(id);
+        if (order == null)
+        {
+            return ResponseEntity.noContent().build();
+        }
 
         OrderResponse orderResponse = OrderResponseCreator.createResponseOf(order);
-
 
         return ResponseEntity.ok(orderResponse);
     }
