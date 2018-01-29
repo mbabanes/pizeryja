@@ -9,14 +9,4 @@ setTimeout(
     }, 5000);
 
 
-$(document).ready(function() {
-    $.ajax({
-        url: "https://reqres.in/api/users/2"
-    }).then(function(data) {
-        $('.greeting-id').append(data.data.id);
-
-        $('.greeting-content').append(data.data.last_name);
-
-    });
-});
 

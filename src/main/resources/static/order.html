@@ -137,11 +137,13 @@
 			</div>
 			<div class="">
 				<label><h2>Delivery Address:</h2></label>
-				<input type="text" placeholder="Enter Delivery Address" name="addr" required>
+				<input id="addrCity" type="text" placeholder="City" name="addrCity" required>
+				<input id="addrStr" type="text" placeholder="Street" name="addrStr" required>
+				<input id="addrHN" type="text" placeholder="House number" name="addrHN" required>
 			</div>
 		</div>
 		<div class="container" >
-			<button type="button" onclick="final_order()" id="order_btn" disabled="disabled" class="button">I order!</button>
+			<button type="button" onclick="finalize()" id="order_btn" disabled="disabled" class="button">I order!</button>
 
 		</div>
 	</form>
@@ -250,6 +252,31 @@
 
         });
     });
+
+var pizzaIds = [1,2,1];
+    function finalize() {
+
+        $.ajax({
+            type: "POST",
+            url: '/order/make',
+            dataType: 'json',
+            data: JSON.stringify( {
+                "addressJSON": {
+                    "city": document.getElementById("addrCity").value,
+                    "houseNumber": document.getElementById("addrHN").value,
+                    "street": document.getElementById("addrStr").value,
+                },
+                "pizzaIds": pizzaIds
+            }),
+            contentType: 'application/json'
+
+        })
+        alert("Zakupy poprawne!");
+        location.href = "http://localhost:8080/wait.html";
+    };
+
+
+
 </script>
 
 
