@@ -73,15 +73,32 @@ function loginFunction() {
 
 $('#loginBtn').click(function () {
 
-    var dataLogin = { //wczytac dane wpisane
-      login: "",
-      password:""
+    var dataLogin = {
+      username: $("#loginEmail").val(),
+      password: $("#loginPsw").val()
     };
     $.ajax({
-        url: "http://localhost:8080/" + dataLogin//link do log
-    }).then(function(data) {
-        // jezeli data success to przekierowanie na post login 200 to git
-        // sprawdzic w backu czy dane sie zgadzaja
+        type: "POST",
+        dataType: 'json',
+        data: JSON.stringify(dataLogin),
+        contentType: 'application/json',
+        // header:{"Authorization": "token"}, autoryzacja do roznych gowien
+        url: "http://localhost:8080/auth"//link do log
+    }).then(function(data, status) {
+        if(status === "success"){
+            document.cookie = "token="+data.token;
+            window.location.href = "/order.html";
+        }
+
+
+
     });
+
+});
+
+$("#logoutBtn").click(function () {
+    // wyjebac tokena w backendzie / zniszczyc sesja
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    window.location.href = "/";
 
 });
