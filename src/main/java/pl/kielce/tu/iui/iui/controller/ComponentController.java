@@ -7,44 +7,50 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kielce.tu.iui.iui.controller.json.ComponentJSON;
+import pl.kielce.tu.iui.iui.controller.json.response.ComponentResponseJSON;
 import pl.kielce.tu.iui.iui.controller.json.utill.ComponentConverter;
 import pl.kielce.tu.iui.iui.entity.Component;
 import pl.kielce.tu.iui.iui.repository.ComponentRepository;
 import pl.kielce.tu.iui.iui.services.ComponentService;
 import pl.kielce.tu.iui.iui.validators.ComponentValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("component")
+@RequestMapping("components")
 public class ComponentController
 {
-    @Autowired
-    private ComponentRepository componentRepository;
-
     @Autowired
     private ComponentService componentService;
 
     @CrossOrigin
-    @GetMapping("all")
-    public ResponseEntity<List<Component>> getAllComponents()
+    @GetMapping("/")
+    public ResponseEntity<?> getAllComponents()
     {
         try
         {
-            return ResponseEntity.ok(componentService.getAllComponent());
+            List<Component> components = componentService.getAllComponent();
+            List<ComponentResponseJSON> componentResponseJSONList = createComponentResponseListOf(components);
+
+            return ResponseEntity.ok(componentResponseJSONList);
         } catch(Exception e)
         {
             return ResponseEntity.badRequest().body(null);
         }
     }
 
+
+
     @CrossOrigin
     @GetMapping("all/{page}")
-    public ResponseEntity<List<Component>> getPageComponent(@PathVariable Integer page)
+    public ResponseEntity<?> getPageComponent(@PathVariable Integer page)
     {
         try
         {
-            return ResponseEntity.ok(componentService.getComponentPagable(page));
+            List<Component> components = componentService.getComponentPagable(page);
+            List<ComponentResponseJSON> componentResponseJSONList = createComponentResponseListOf(components);
+            return ResponseEntity.ok(componentResponseJSONList);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -53,7 +59,7 @@ public class ComponentController
     }
 
     @CrossOrigin
-    @PostMapping("add")
+    @PostMapping("/")
     public ResponseEntity<?> addComponent(@RequestBody ComponentJSON componentJSON)
     {
         ComponentValidator componentValidator = new ComponentValidator(componentJSON);
@@ -77,6 +83,17 @@ public class ComponentController
     @GetMapping("/{id}")
     public ResponseEntity<?> getComponentById(@PathVariable long id)
     {
-        return ResponseEntity.ok(componentService.getComponentById(id));
+        Component component = componentService.getComponentById(id);
+        ComponentResponseJSON componentResponseJSON = ComponentConverter.convertToComponentResponseJSON(component);
+        return ResponseEntity.ok(componentResponseJSON);
+    }
+
+    private List<ComponentResponseJSON> createComponentResponseListOf(List<Component> components)
+    {
+        List<ComponentResponseJSON> componentResponseJSONList = new ArrayList<>();
+        components.forEach(component -> {
+            componentResponseJSONList.add(ComponentConverter.convertToComponentResponseJSON(component));
+        });
+        return componentResponseJSONList;
     }
 }

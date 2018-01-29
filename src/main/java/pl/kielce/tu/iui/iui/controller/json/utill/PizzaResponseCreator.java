@@ -39,9 +39,10 @@ public class PizzaResponseCreator
         List<ComponentResponseJSON> componentResponseJSONList = new ArrayList<>();
         pizza.getComponents().forEach(component ->
         {
-            ComponentResponseJSON componentResponseJSON = new ComponentResponseJSON();
-            componentResponseJSON.setId(component.getId());
-            componentResponseJSON.setName(component.getName());
+//            ComponentResponseJSON componentResponseJSON = new ComponentResponseJSON();
+//            componentResponseJSON.setId(component.getId());
+//            componentResponseJSON.setName(component.getName());
+            ComponentResponseJSON componentResponseJSON = ComponentConverter.convertToComponentResponseJSON(component);
             componentResponseJSONList.add(componentResponseJSON);
         });
 

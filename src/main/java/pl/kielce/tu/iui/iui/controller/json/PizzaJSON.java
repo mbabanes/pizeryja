@@ -9,7 +9,7 @@ public class PizzaJSON
 {
 
     private String name;
-    private List<Component> components;
+    private List<Long> components;
 
 
     public String getName()
@@ -22,12 +22,12 @@ public class PizzaJSON
         this.name = name;
     }
 
-    public List<Component> getComponents()
+    public List<Long> getComponents()
     {
         return components;
     }
 
-    public void setComponents(List<Component> components)
+    public void setComponents(List<Long> components)
     {
         this.components = components;
     }

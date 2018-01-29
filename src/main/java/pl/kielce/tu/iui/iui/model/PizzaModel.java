@@ -1,11 +1,15 @@
 package pl.kielce.tu.iui.iui.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.SessionScope;
 import pl.kielce.tu.iui.iui.controller.json.PizzaJSON;
 import pl.kielce.tu.iui.iui.entity.Component;
 import pl.kielce.tu.iui.iui.entity.Pizza;
+import pl.kielce.tu.iui.iui.services.ComponentService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @org.springframework.stereotype.Component
@@ -13,32 +17,46 @@ import java.time.LocalDate;
 public class PizzaModel
 {
     private PizzaJSON pizzaJSON;
-    private Pizza pizza;
+
+    @Autowired
+    private ComponentService componentService;
 
 
     public Pizza getProductOf(PizzaJSON pizzaJSON)
     {
         this.pizzaJSON = pizzaJSON;
 
-        pizza = new Pizza();
+        Pizza pizza = new Pizza();
         pizza.setName(pizzaJSON.getName());
 
 
-
-        pizza.setComponents(pizzaJSON.getComponents());
+        List<Component> components = this.getComponents();
+        pizza.setComponents(components);
         pizza.setData(LocalDate.now());
 
-        pizza.setPrice(countPrice());
+        pizza.setPrice(countPriceBy(components));
 
         return pizza;
     }
 
+    private List<Component> getComponents()
+    {
+        List<Component> components = new ArrayList<>();
+        pizzaJSON.getComponents().forEach(id ->{
+            Component component = componentService.getComponentById(id);
+            components.add(component);
+        });
 
-    private double countPrice()
+        return components;
+
+    }
+
+
+    private double countPriceBy(List<Component> components)
     {
         double price = 0.0;
 
-        for(Component component : pizzaJSON.getComponents())
+        for(Component component : components)
         {
             price += component.getPrice();
         }

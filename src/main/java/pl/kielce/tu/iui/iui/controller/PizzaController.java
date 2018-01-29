@@ -20,9 +20,6 @@ import java.util.List;
 public class PizzaController
 {
     @Autowired
-    private PizzaRepository pizzaRepository;
-
-    @Autowired
     private PizzaService pizzaService;
 
     @Autowired
@@ -30,7 +27,7 @@ public class PizzaController
 
 
     @CrossOrigin
-    @PostMapping("create")
+    @PostMapping("/")
     public ResponseEntity<?> createPizza(@RequestBody PizzaJSON pizzaJSON)
 //    public ResponseEntity<?> createPizza(@RequestBody String pizzaJSON)
     {
@@ -53,7 +50,7 @@ public class PizzaController
     }
 
     @CrossOrigin
-    @GetMapping("all")
+    @GetMapping("/")
     public ResponseEntity<?> getAllPizzas()
     {
         List<Pizza> pizzas = pizzaService.getAll();
@@ -76,7 +73,7 @@ public class PizzaController
     }
 
     @CrossOrigin
-    @PostMapping("byComponents")
+    @PostMapping("components")
     public ResponseEntity<?> getPizzaByComponents(@RequestBody List<String> components)
     {
         List<Pizza> pizzas = pizzaService.getPizzasBy(components);
@@ -85,8 +82,4 @@ public class PizzaController
 
         return ResponseEntity.ok(pizzaResponseJSONList);
     }
-
-
-
-
 }
