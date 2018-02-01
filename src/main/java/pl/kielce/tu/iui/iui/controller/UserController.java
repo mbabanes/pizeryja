@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;
 import pl.kielce.tu.iui.iui.controller.json.UserJSON;
 import pl.kielce.tu.iui.iui.controller.json.utill.UserConverter;
@@ -44,16 +45,28 @@ public class UserController
 
             userService.insert(user);
             return ResponseEntity.ok("Udana rejestracja");
-        }catch(IllegalArgumentException e)
+        }
+        catch (IllegalArgumentException e)
         {
             return ResponseEntity.badRequest().body(userValidator.getErrors());
-        }catch(Exception sqlE)
+        }
+        catch (Exception sqlE)
         {
             sqlE.printStackTrace();
             return ResponseEntity.badRequest().body("Bład bazy danych");
         }
     }
 
+    @Autowired
+    private TokenStore tokenStore;
+
+    @CrossOrigin
+    @PutMapping("logut")
+    public String logut(@RequestParam(value = "access_token") String accessToken)
+    {
+            tokenStore.removeAccessToken(tokenStore.readAccessToken(accessToken));
+            return "ok";
+    }
     @CrossOrigin
     @GetMapping("current")
     public String getCurrentUser()
